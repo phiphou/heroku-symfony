@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+<div class="row">
+    <h4>Vidéos</h4>
+
+    <div class="row row-cols-4 row-cols-md-4 g-2">
+        {% for video in videos %}
+        <div class="col">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <a href="{{ path('app_video', {'id': video.id }) }}"><img src="{{ video.url|video_thumbnail }}"
+                        class="card-img-top"></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ video.title }}</h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-5 mt-5" id="addvideo">
+        <h4>Ajouter une vidéo</h4>
+        {{form_start(form)}}
+
+        {{form_row(form.title, {attr: { placeholder: "Nom de la vidéo"}, label: 'Nom de la vidéo'})}}
+        {{form_row(form.url, {attr: { placeholder: "Lien de la vidéo"}, label: 'Lien de la vidéo'})}}
+        <button type="submit" class="btn btn-success">
+            Enregister
+        </button>
+    </div>
+    {{form_end(form)}}
+
+</div>
+
+{% endblock %}
