@@ -1,1 +1,3 @@
-web: php bin/console doctrine:migrations:migrate && php -S localhost:3000 -t public
+php bin/console doctrine:migrations:migrate
+
+php -S 0.0.0.0:3000 -t public
